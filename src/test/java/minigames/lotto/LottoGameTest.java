@@ -12,7 +12,8 @@ class LottoGameTest {
 
     private final Player player = new LottoPlayer();
     private final MessageGiver messageGiver = new MessageGiver();
-    private final Game game = new LottoGame(player, messageGiver);
+    private final LottoInputReceiver lottoInputReceiver = new LottoInputReceiver();
+    private final Game game = new LottoGame(player, messageGiver, lottoInputReceiver);
 
     @Test
     public void shouldReturnWinnerMessageWhenPlayerIsWinner() {

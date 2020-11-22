@@ -1,5 +1,7 @@
 package minigames.lotto;
 
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import minigames.Game;
 import minigames.MessageGiver;
@@ -11,26 +13,24 @@ public class LottoGame implements Game {
 
     public static final String GAME_NAME = "Lotto";
 
-    Player player;
-    MessageGiver messageGiver;
+    private final Player player;
+    private final MessageGiver messageGiver;
+    private final LottoInputReceiver lottoInputReceiver;
 
     public GameResult startGame() {
+        final Set<String> sixNumbers = lottoInputReceiver.getSixNumbers();
 
         return getGameResult();
     }
 
-    public boolean isWinner() {
-        return player.isWinner();
-    }
-
     private GameResult getGameResult() {
         if (player.isWinner()) {
-            return createGameResult(messageGiver.getWinnerMessage(GAME_NAME));
+            return getGameResult(messageGiver.getWinnerMessage(GAME_NAME));
         }
-        return createGameResult(messageGiver.getLoserMessage(GAME_NAME));
+        return getGameResult(messageGiver.getLoserMessage(GAME_NAME));
     }
 
-    private GameResult createGameResult(String gameResultMessage) {
+    private GameResult getGameResult(String gameResultMessage) {
         return new GameResult(gameResultMessage, this, player);
     }
 }

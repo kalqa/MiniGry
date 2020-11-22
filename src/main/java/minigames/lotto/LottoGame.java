@@ -16,18 +16,21 @@ public class LottoGame implements Game {
     private final Player player;
     private final MessageGiver messageGiver;
     private final LottoInputReceiver lottoInputReceiver;
+    private final LottoRandomGenerator randomGenerator;
+    private final LottoLogic lottoLogic;
 
     public GameResult startGame() {
-        final Set<String> sixNumbers = lottoInputReceiver.getSixNumbers();
-
-        return getGameResult();
+        final Set<Integer> sixNumbers = lottoInputReceiver.getSixNumbers();
+        final Set<Integer> randomSixNumbers = randomGenerator.getSixNumbers();
+        final Set<Integer> hitNumbers = lottoLogic.getHitNumbers(sixNumbers, randomSixNumbers);
+        return getGameResult(hitNumbers);
     }
 
-    private GameResult getGameResult() {
-        if (player.isWinner()) {
-            return getGameResult(messageGiver.getWinnerMessage(GAME_NAME));
+    private GameResult getGameResult(Set<Integer> hitNumbers) {
+        if (hitNumbers.isEmpty()) {
+            return getGameResult(messageGiver.getLoserMessage(GAME_NAME));
         }
-        return getGameResult(messageGiver.getLoserMessage(GAME_NAME));
+        return getGameResult(messageGiver.getWinnerMessage(GAME_NAME, hitNumbers));
     }
 
     private GameResult getGameResult(String gameResultMessage) {

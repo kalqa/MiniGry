@@ -1,7 +1,7 @@
 package minigames.model;
 
 import lombok.AllArgsConstructor;
-import minigames.Game;
+import minigames.game.Game;
 
 @AllArgsConstructor
 public class GameResult {

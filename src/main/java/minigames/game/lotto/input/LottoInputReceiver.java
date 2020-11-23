@@ -1,22 +1,22 @@
-package minigames.lotto;
+package minigames.game.lotto.input;
 
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
-import minigames.MessageGiver;
+import minigames.MessageProvider;
 
 @AllArgsConstructor
 public class LottoInputReceiver {
 
-    private final MessageGiver messageGiver;
+    private final MessageProvider messageProvider;
 
     public Set<Integer> getSixNumbers() {
         Scanner in = new Scanner(System.in);
         final Set<Integer> givenNumbers = new HashSet<Integer>();
         while (areLessThanSixNumbersGiven(givenNumbers)) {
-            System.out.println(messageGiver.getGiveNumberMessage());
+            System.out.println(messageProvider.getGiveNumberMessage());
             givenNumbers.add(in.nextInt());
         }
         in.close();

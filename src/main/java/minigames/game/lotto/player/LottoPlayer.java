@@ -1,4 +1,4 @@
-package minigames.lotto;
+package minigames.game.lotto.player;
 
 import lombok.Setter;
 import minigames.model.Player;

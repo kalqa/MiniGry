@@ -1,4 +1,4 @@
-package minigames;
+package minigames.game;
 
 import minigames.model.GameResult;
 

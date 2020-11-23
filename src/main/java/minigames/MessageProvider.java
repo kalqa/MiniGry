@@ -2,7 +2,7 @@ package minigames;
 
 import java.util.Set;
 
-public class MessageGiver {
+public class MessageProvider {
 
     private static final String GAME_S_STARTED = "Game: %s started";
     private static final String YOU_WON_S_GAME = "You won: %s game, your hit numbers: %s";

@@ -1,12 +1,12 @@
 package minigames.model;
 
 import lombok.AllArgsConstructor;
-import minigames.game.Game;
+import lombok.Data;
 
 @AllArgsConstructor
+@Data
 public class GameResult {
 
-    public String message;
-    public Game game;
-    public Player winner;
+    private String message;
+    private Game game;
 }

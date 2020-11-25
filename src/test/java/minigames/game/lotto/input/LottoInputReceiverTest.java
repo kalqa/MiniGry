@@ -8,15 +8,13 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import minigames.game.lotto.messageprovider.LottoMessageProvider;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoInputReceiverTest {
 
-    LottoMessageProvider lottoMessageProvider = new LottoMessageProvider();
-    LottoInputReceiver lottoInputReceiver = new LottoInputReceiver(lottoMessageProvider);
+    LottoInputReceiver lottoInputReceiver = new LottoInputReceiver();
 
     @Test
     public void shouldReturnNumbersInSetWhenAllInRange() {

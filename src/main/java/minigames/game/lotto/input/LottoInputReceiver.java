@@ -14,20 +14,20 @@ public class LottoInputReceiver {
     private static final int LOWER_BOUND = 1;
     private static final int UPPER_BOUND = 99;
     private static final String QUIT_SIGN = "q";
+    public static final int HOW_MANY_NUMBERS_FROM_USER = 6;
 
-    private final LottoMessageProvider lottoMessageProvider;
-
-    public Set<Integer> getSixNumbers(Scanner in) {
-        Set<Integer> givenNumbersFromUser = getNumbers(in);
-        in.close();
+    public Set<Integer> getSixNumbers(Scanner scanner) {
+        Set<Integer> givenNumbersFromUser = getNumbersFromUserInput(scanner);
+        scanner.close();
         return givenNumbersFromUser;
     }
 
-    private Set<Integer> getNumbers(Scanner in) {
+    private Set<Integer> getNumbersFromUserInput(Scanner in) {
         final Set<Integer> givenNumbers = new HashSet<>();
+        System.out.printf(LottoMessageProvider.PLEASE_GIVE_NUMBERS, HOW_MANY_NUMBERS_FROM_USER);
         while (areLessThanSixNumbersGiven(givenNumbers)) {
             while (!in.hasNextInt()) {
-                System.out.printf(lottoMessageProvider.getNotInRangeMessage(), LOWER_BOUND, UPPER_BOUND);
+                System.out.printf(LottoMessageProvider.NOT_IN_RANGE, LOWER_BOUND, UPPER_BOUND);
                 if (!in.hasNext()) {
                     return Collections.emptySet();
                 }
@@ -36,7 +36,7 @@ public class LottoInputReceiver {
                     return Collections.emptySet();
                 }
             }
-            System.out.println(lottoMessageProvider.getGiveNumberMessage());
+            System.out.println(LottoMessageProvider.GIVE_NUMBER);
             final int userInput = in.nextInt();
             validateNumber(givenNumbers, userInput);
         }
@@ -47,12 +47,12 @@ public class LottoInputReceiver {
         if (isInRange(userInput)) {
             givenNumbers.add(userInput);
         } else {
-            System.out.printf(lottoMessageProvider.getNotInRangeMessage(), userInput, LOWER_BOUND, UPPER_BOUND);
+            System.out.printf(LottoMessageProvider.NOT_IN_RANGE_WITH_GIVEN_NUMBER, userInput, LOWER_BOUND, UPPER_BOUND);
         }
     }
 
     private boolean areLessThanSixNumbersGiven(Set<Integer> numbers) {
-        return numbers.size() < 6;
+        return numbers.size() < HOW_MANY_NUMBERS_FROM_USER;
     }
 
     private boolean isInRange(int givenNumber) {

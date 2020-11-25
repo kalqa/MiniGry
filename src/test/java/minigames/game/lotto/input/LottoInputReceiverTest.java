@@ -18,12 +18,10 @@ class LottoInputReceiverTest {
     LottoMessageProvider lottoMessageProvider = new LottoMessageProvider();
     LottoInputReceiver lottoInputReceiver = new LottoInputReceiver(lottoMessageProvider);
 
-    // https://stackoverflow.com/questions/34139658/how-to-junit-test-a-method-with-a-scanner
-
     @Test
     public void shouldReturnNumbersInSetWhenAllInRange() {
         // given
-        Set<Integer> expectedNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        Set<Integer> expectedNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         String givenNumbers = "1 2 3 4 5 6";
         Scanner scanner = mockScannerIn(givenNumbers);
         // when
@@ -35,7 +33,7 @@ class LottoInputReceiverTest {
     @Test
     public void shouldReturnNumbersInSetWhenOneNotInRange() {
         // given
-        Set<Integer> expectedNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(1, 2, 3, 4, 5, 15)));
+        Set<Integer> expectedNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 15)));
         String givenNumbers = "1 2 3 4 5 101 15";
         Scanner scanner = mockScannerIn(givenNumbers);
         // when

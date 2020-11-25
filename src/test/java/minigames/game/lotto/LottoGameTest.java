@@ -21,13 +21,12 @@ import static org.mockito.Mockito.when;
 
 class LottoGameTest {
 
-    public static final Scanner scannerMock = new Scanner(System.in);
-    private final LottoMessageProvider lottoMessageProvider = new LottoMessageProvider();
-    private final LottoLogic lottoLogic = new LottoLogic();
+    private static final Scanner scannerMock = new Scanner(System.in);
+    private static final LottoMessageProvider lottoMessageProvider = new LottoMessageProvider();
+    private static final LottoLogic lottoLogic = new LottoLogic();
+
     private static LottoInputReceiver lottoInputReceiverMock;
     private static LottoRandomGenerator randomGeneratorMock;
-//    private final LottoInputReceiver lottoInputReceiver = new LottoInputReceiver(messageGiver);
-//    private final Game game = new LottoGame(player, messageGiver, lottoInputReceiver);
 
     @BeforeAll
     public static void beforeEach() {
@@ -38,8 +37,8 @@ class LottoGameTest {
     @Test
     public void shouldReturnWinnerMessageWhenPlayerIsWinner() {
         // given
-        Set<Integer> playerGivenNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6)));
-        Set<Integer> randomNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        Set<Integer> playerGivenNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        Set<Integer> randomNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         mockNumbers(playerGivenNumbers, randomNumbers);
         Game lottoGame = new LottoGame(lottoMessageProvider, lottoInputReceiverMock, randomGeneratorMock, lottoLogic, scannerMock);
         // when
@@ -51,8 +50,8 @@ class LottoGameTest {
     @Test
     public void shouldReturnLoserMessageWhenPlayerIsLoser() {
         // given
-        Set<Integer> playerGivenNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6)));
-        Set<Integer> randomNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(7, 8, 9, 10, 11, 12)));
+        Set<Integer> playerGivenNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        Set<Integer> randomNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(7, 8, 9, 10, 11, 12)));
         mockNumbers(playerGivenNumbers, randomNumbers);
         Game lottoGame = new LottoGame(lottoMessageProvider, lottoInputReceiverMock, randomGeneratorMock, lottoLogic, scannerMock);
         // when
@@ -64,8 +63,8 @@ class LottoGameTest {
     @Test
     public void shouldReturnWinnerWithOneNumberMessageWhenPlayerHitOneNumber() {
         // given
-        Set<Integer> playerGivenNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6)));
-        Set<Integer> randomNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(6, 8, 9, 10, 11, 12)));
+        Set<Integer> playerGivenNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        Set<Integer> randomNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(6, 8, 9, 10, 11, 12)));
         mockNumbers(playerGivenNumbers, randomNumbers);
         Game lottoGame = new LottoGame(lottoMessageProvider, lottoInputReceiverMock, randomGeneratorMock, lottoLogic, scannerMock);
         // when
@@ -76,6 +75,6 @@ class LottoGameTest {
 
     private void mockNumbers(Set<Integer> playerGivenNumbers, Set<Integer> randomNumbers) {
         when(lottoInputReceiverMock.getSixNumbers(scannerMock)).thenReturn(playerGivenNumbers);
-        when(randomGeneratorMock.getSixNumbers()).thenReturn(randomNumbers);
+        when(randomGeneratorMock.getRandomSixNumbers()).thenReturn(randomNumbers);
     }
 }

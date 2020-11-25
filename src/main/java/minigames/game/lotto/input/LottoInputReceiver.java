@@ -24,7 +24,7 @@ public class LottoInputReceiver {
     }
 
     private Set<Integer> getNumbers(Scanner in) {
-        final Set<Integer> givenNumbers = new HashSet<Integer>();
+        final Set<Integer> givenNumbers = new HashSet<>();
         while (areLessThanSixNumbersGiven(givenNumbers)) {
             while (!in.hasNextInt()) {
                 System.out.printf(lottoMessageProvider.getNotInRangeMessage(), LOWER_BOUND, UPPER_BOUND);

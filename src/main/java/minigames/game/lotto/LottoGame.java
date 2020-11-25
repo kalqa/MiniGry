@@ -29,7 +29,7 @@ public class LottoGame implements Game {
 
     private Set<Integer> getHitNumbers() {
         final Set<Integer> inputNumbers = lottoInputReceiver.getSixNumbers(scanner);
-        final Set<Integer> randomNumbers = randomGenerator.getSixNumbers();
+        final Set<Integer> randomNumbers = randomGenerator.getRandomSixNumbers();
         return lottoLogic.getHitNumbers(inputNumbers, randomNumbers);
     }
 

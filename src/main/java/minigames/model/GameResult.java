@@ -2,6 +2,7 @@ package minigames.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import minigames.game.Game;
 
 @AllArgsConstructor
 @Data

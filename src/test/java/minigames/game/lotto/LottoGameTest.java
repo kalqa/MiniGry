@@ -3,24 +3,26 @@ package minigames.game.lotto;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 
-import minigames.MessageProvider;
+import minigames.game.Game;
 import minigames.game.lotto.input.LottoInputReceiver;
 import minigames.game.lotto.logic.LottoLogic;
 import minigames.game.lotto.logic.LottoRandomGenerator;
-import minigames.model.Game;
+import minigames.game.lotto.messageprovider.LottoMessageProvider;
 import minigames.model.GameResult;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class LottoGameTest {
 
-    private final MessageProvider messageProvider = new MessageProvider();
+    public static final Scanner scannerMock = new Scanner(System.in);
+    private final LottoMessageProvider lottoMessageProvider = new LottoMessageProvider();
     private final LottoLogic lottoLogic = new LottoLogic();
     private static LottoInputReceiver lottoInputReceiverMock;
     private static LottoRandomGenerator randomGeneratorMock;
@@ -29,8 +31,8 @@ class LottoGameTest {
 
     @BeforeAll
     public static void beforeEach() {
-        lottoInputReceiverMock = Mockito.mock(LottoInputReceiver.class);
-        randomGeneratorMock = Mockito.mock(LottoRandomGenerator.class);
+        lottoInputReceiverMock = mock(LottoInputReceiver.class);
+        randomGeneratorMock = mock(LottoRandomGenerator.class);
     }
 
     @Test
@@ -39,7 +41,7 @@ class LottoGameTest {
         Set<Integer> playerGivenNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         Set<Integer> randomNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         mockNumbers(playerGivenNumbers, randomNumbers);
-        Game lottoGame = new LottoGame(messageProvider, lottoInputReceiverMock, randomGeneratorMock, lottoLogic);
+        Game lottoGame = new LottoGame(lottoMessageProvider, lottoInputReceiverMock, randomGeneratorMock, lottoLogic, scannerMock);
         // when
         final GameResult gameResult = lottoGame.startGame();
         // then
@@ -52,7 +54,7 @@ class LottoGameTest {
         Set<Integer> playerGivenNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         Set<Integer> randomNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(7, 8, 9, 10, 11, 12)));
         mockNumbers(playerGivenNumbers, randomNumbers);
-        Game lottoGame = new LottoGame(messageProvider, lottoInputReceiverMock, randomGeneratorMock, lottoLogic);
+        Game lottoGame = new LottoGame(lottoMessageProvider, lottoInputReceiverMock, randomGeneratorMock, lottoLogic, scannerMock);
         // when
         final GameResult gameResult = lottoGame.startGame();
         // then
@@ -65,7 +67,7 @@ class LottoGameTest {
         Set<Integer> playerGivenNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         Set<Integer> randomNumbers = Collections.unmodifiableSet(new HashSet<Integer>(Arrays.asList(6, 8, 9, 10, 11, 12)));
         mockNumbers(playerGivenNumbers, randomNumbers);
-        Game lottoGame = new LottoGame(messageProvider, lottoInputReceiverMock, randomGeneratorMock, lottoLogic);
+        Game lottoGame = new LottoGame(lottoMessageProvider, lottoInputReceiverMock, randomGeneratorMock, lottoLogic, scannerMock);
         // when
         final GameResult gameResult = lottoGame.startGame();
         // then
@@ -73,7 +75,7 @@ class LottoGameTest {
     }
 
     private void mockNumbers(Set<Integer> playerGivenNumbers, Set<Integer> randomNumbers) {
-        when(lottoInputReceiverMock.getSixNumbers()).thenReturn(playerGivenNumbers);
+        when(lottoInputReceiverMock.getSixNumbers(scannerMock)).thenReturn(playerGivenNumbers);
         when(randomGeneratorMock.getSixNumbers()).thenReturn(randomNumbers);
     }
 }

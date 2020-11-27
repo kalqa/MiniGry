@@ -4,11 +4,11 @@ import java.security.SecureRandom;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class LottoRandomGenerator {
+import static minigames.game.lotto.config.LottoGameConfiguration.NUMBERS_TO_GENERATE;
+import static minigames.game.lotto.config.LottoGameConfiguration.NUMBER_ORIGIN;
+import static minigames.game.lotto.config.LottoGameConfiguration.RANDOM_NUMBER_BOUND;
 
-    private static final int NUMBERS_TO_GENERATE = 6;
-    private static final int NUMBER_ORIGIN = 1;
-    private static final int RANDOM_NUMBER_BOUND = 100;
+public class LottoRandomGenerator {
 
     public Set<Integer> getRandomSixNumbers() {
         SecureRandom random = new SecureRandom();

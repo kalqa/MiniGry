@@ -7,16 +7,15 @@ import minigames.game.lotto.LottoGame;
 import minigames.game.lotto.input.LottoInputReceiver;
 import minigames.game.lotto.logic.LottoHitNumberCalculator;
 import minigames.game.lotto.logic.LottoRandomGenerator;
-import minigames.model.GameResult;
 
 public class App {
 
     public static void main(String[] args) {
-        final Game lottoGame = prepareLottoGame();
-        final GameResult run = lottoGame.startGame();
+        final Game lottoGame = getLottoGame();
+        lottoGame.startGame();
     }
 
-    private static Game prepareLottoGame() {
+    private static Game getLottoGame() {
         final LottoInputReceiver lottoInputReceiver = new LottoInputReceiver();
         final LottoRandomGenerator randomGenerator = new LottoRandomGenerator();
         final LottoHitNumberCalculator lottoHitNumberCalculator = new LottoHitNumberCalculator();

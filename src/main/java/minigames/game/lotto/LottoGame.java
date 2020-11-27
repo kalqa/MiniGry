@@ -12,10 +12,10 @@ import minigames.game.lotto.messageprovider.LottoMessageProvider;
 import minigames.model.GameResult;
 import minigames.model.GameResultInfo;
 
+import static minigames.game.lotto.config.LottoGameConfiguration.GAME_NAME;
+
 @AllArgsConstructor
 public class LottoGame implements Game {
-
-    private static final String GAME_NAME = "Lotto";
 
     private final LottoInputReceiver lottoInputReceiver;
     private final LottoRandomGenerator randomGenerator;
@@ -23,7 +23,7 @@ public class LottoGame implements Game {
     private final Scanner scanner;
 
     public GameResult startGame() {
-        System.out.printf(LottoMessageProvider.GAME_S_STARTED, GAME_NAME);
+        System.out.println(String.format(LottoMessageProvider.GAME_S_STARTED, GAME_NAME));
         final GameResultInfo gameResultInfo = getHitNumbers();
         final GameResult gameResult = new GameResult(this, gameResultInfo);
         System.out.println(gameResult.getGameResultInfo().getGameResultMessage());

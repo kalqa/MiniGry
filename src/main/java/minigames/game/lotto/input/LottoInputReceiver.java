@@ -8,13 +8,13 @@ import java.util.Set;
 import lombok.AllArgsConstructor;
 import minigames.game.lotto.messageprovider.LottoMessageProvider;
 
+import static minigames.game.lotto.config.LottoGameConfiguration.HOW_MANY_NUMBERS_FROM_USER;
+import static minigames.game.lotto.config.LottoGameConfiguration.LOWER_BOUND;
+import static minigames.game.lotto.config.LottoGameConfiguration.QUIT_GAME_SIGN;
+import static minigames.game.lotto.config.LottoGameConfiguration.UPPER_BOUND;
+
 @AllArgsConstructor
 public class LottoInputReceiver {
-
-    private static final int LOWER_BOUND = 1;
-    private static final int UPPER_BOUND = 99;
-    private static final String QUIT_SIGN = "q";
-    public static final int HOW_MANY_NUMBERS_FROM_USER = 6;
 
     public Set<Integer> getSixNumbers(Scanner scanner) {
         Set<Integer> givenNumbersFromUser = getNumbersFromUserInput(scanner);
@@ -24,7 +24,7 @@ public class LottoInputReceiver {
 
     private Set<Integer> getNumbersFromUserInput(Scanner in) {
         final Set<Integer> givenNumbers = new HashSet<>();
-        System.out.printf(LottoMessageProvider.PLEASE_GIVE_NUMBERS, HOW_MANY_NUMBERS_FROM_USER);
+        System.out.println(String.format(LottoMessageProvider.PLEASE_GIVE_NUMBERS, HOW_MANY_NUMBERS_FROM_USER));
         while (areLessThanSixNumbersGiven(givenNumbers)) {
             while (!in.hasNextInt()) {
                 System.out.printf(LottoMessageProvider.NOT_IN_RANGE, LOWER_BOUND, UPPER_BOUND);
@@ -32,7 +32,7 @@ public class LottoInputReceiver {
                     return Collections.emptySet();
                 }
                 final String next = in.next();
-                if (next.equalsIgnoreCase(QUIT_SIGN)) {
+                if (next.equalsIgnoreCase(QUIT_GAME_SIGN)) {
                     return Collections.emptySet();
                 }
             }

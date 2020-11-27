@@ -25,13 +25,13 @@ public class LottoInputReceiver {
         final Set<Integer> givenNumbers = new HashSet<>();
         System.out.println(String.format(LottoMessageProvider.PLEASE_GIVE_NUMBERS, HOW_MANY_NUMBERS_FROM_USER));
         while (areLessThanSixNumbersGiven(givenNumbers)) {
+            System.out.println(LottoMessageProvider.GIVE_NUMBER);
             while (!in.hasNextInt()) {
                 System.out.printf(LottoMessageProvider.NOT_IN_RANGE, LOWER_BOUND, UPPER_BOUND);
                 if (!in.hasNext()) {
                     return Collections.emptySet();
                 }
             }
-            System.out.println(LottoMessageProvider.GIVE_NUMBER);
             final int userInput = in.nextInt();
             validateNumber(givenNumbers, userInput);
         }

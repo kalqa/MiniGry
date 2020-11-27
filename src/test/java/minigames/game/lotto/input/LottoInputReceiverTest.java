@@ -44,7 +44,7 @@ class LottoInputReceiverTest {
     public void shouldReturnZeroNumbersInSetWhenAllNotInRange() {
         // given
         Set<Integer> expectedNumbers = Collections.emptySet();
-        String givenNumbers = "101 102 103 103 104 105 106";
+        String givenNumbers = "0 -1 103 103 104 105 106";
         Scanner scanner = mockScannerIn(givenNumbers);
         // when
         final Set<Integer> userInputNumbers = lottoInputReceiver.getSixNumbers(scanner);

@@ -12,7 +12,7 @@ import minigames.game.lotto.messageprovider.LottoMessageProvider;
 import minigames.model.GameResult;
 import minigames.model.GameResultInfo;
 
-import static minigames.game.lotto.config.LottoGameConfiguration.GAME_NAME;
+import static minigames.game.lotto.messageprovider.LottoMessageProvider.GAME_NAME;
 
 @AllArgsConstructor
 public class LottoGame implements Game {
@@ -25,16 +25,18 @@ public class LottoGame implements Game {
     public GameResult startGame() {
         System.out.println(String.format(LottoMessageProvider.GAME_S_STARTED, GAME_NAME));
         final GameResultInfo gameResultInfo = getHitNumbers();
-        final GameResult gameResult = new GameResult(this, gameResultInfo);
-        System.out.println(gameResult.getGameResultInfo().getGameResultMessage());
-        return gameResult;
+        return getGameResult(gameResultInfo);
     }
 
     private GameResultInfo getHitNumbers() {
         final Set<Integer> inputNumbers = lottoInputReceiver.getSixNumbers(scanner);
         final Set<Integer> randomNumbers = randomGenerator.getRandomSixNumbers();
-        System.out.println(inputNumbers);
-        System.out.println(randomNumbers);
         return lottoHitNumberCalculator.getHitNumbers(inputNumbers, randomNumbers);
+    }
+
+    private GameResult getGameResult(GameResultInfo gameResultInfo) {
+        final GameResult gameResult = new GameResult(this, gameResultInfo);
+        System.out.println(gameResult.getGameResultInfo().getGameResultMessage());
+        return gameResult;
     }
 }

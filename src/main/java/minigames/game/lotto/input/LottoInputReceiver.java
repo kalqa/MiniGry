@@ -10,7 +10,6 @@ import minigames.game.lotto.messageprovider.LottoMessageProvider;
 
 import static minigames.game.lotto.config.LottoGameConfiguration.HOW_MANY_NUMBERS_FROM_USER;
 import static minigames.game.lotto.config.LottoGameConfiguration.LOWER_BOUND;
-import static minigames.game.lotto.config.LottoGameConfiguration.QUIT_GAME_SIGN;
 import static minigames.game.lotto.config.LottoGameConfiguration.UPPER_BOUND;
 
 @AllArgsConstructor
@@ -29,10 +28,6 @@ public class LottoInputReceiver {
             while (!in.hasNextInt()) {
                 System.out.printf(LottoMessageProvider.NOT_IN_RANGE, LOWER_BOUND, UPPER_BOUND);
                 if (!in.hasNext()) {
-                    return Collections.emptySet();
-                }
-                final String next = in.next();
-                if (next.equalsIgnoreCase(QUIT_GAME_SIGN)) {
                     return Collections.emptySet();
                 }
             }

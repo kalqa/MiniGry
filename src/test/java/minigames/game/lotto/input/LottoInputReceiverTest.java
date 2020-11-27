@@ -52,18 +52,6 @@ class LottoInputReceiverTest {
         assertEquals(expectedNumbers, userInputNumbers);
     }
 
-    @Test
-    public void shouldReturnZeroNumbersInSetWhenQWasTyped() {
-        // given
-        Set<Integer> expectedNumbers = Collections.emptySet();
-        String givenNumbers = "z z z z z z z q";
-        Scanner scanner = mockScannerIn(givenNumbers);
-        // when
-        final Set<Integer> userInputNumbers = lottoInputReceiver.getSixNumbers(scanner);
-        // then
-        assertEquals(expectedNumbers, userInputNumbers);
-    }
-
     private Scanner mockScannerIn(String data) {
         InputStream stdin = System.in;
         System.setIn(new ByteArrayInputStream(data.getBytes()));

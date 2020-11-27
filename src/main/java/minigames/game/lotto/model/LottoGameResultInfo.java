@@ -17,6 +17,6 @@ public class LottoGameResultInfo implements GameResultInfo {
 
     @Override
     public String getGameResultMessage() {
-        return String.format(LottoMessageProvider.LOTTO_RESULT_MESSAGE, finalHitNumbers.size(), randomSixNumbers, userGivenNumbers);
+        return String.format(LottoMessageProvider.LOTTO_RESULT, finalHitNumbers.size(), randomSixNumbers, userGivenNumbers);
     }
 }

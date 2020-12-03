@@ -17,7 +17,7 @@ class LottoInputReceiverTest {
     LottoInputReceiver lottoInputReceiver = new LottoInputReceiver();
 
     @Test
-    public void shouldReturnNumbersInSetWhenAllInRange() {
+    void shouldReturnNumbersInSetWhenAllInRange() {
         // given
         Set<Integer> expectedNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         String givenNumbers = "1 2 3 4 5 6";
@@ -29,7 +29,7 @@ class LottoInputReceiverTest {
     }
 
     @Test
-    public void shouldReturnNumbersInSetWhenOneNotInRange() {
+    void shouldReturnNumbersInSetWhenOneNotInRange() {
         // given
         Set<Integer> expectedNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 15)));
         String givenNumbers = "1 2 3 4 5 101 15";
@@ -41,7 +41,7 @@ class LottoInputReceiverTest {
     }
 
     @Test
-    public void shouldReturnZeroNumbersInSetWhenAllNotInRange() {
+    void shouldReturnZeroNumbersInSetWhenAllNotInRange() {
         // given
         Set<Integer> expectedNumbers = Collections.emptySet();
         String givenNumbers = "0 -1 103 103 104 105 106";

@@ -33,7 +33,7 @@ class LottoGameTest {
     }
 
     @Test
-    public void shouldReturnWinnerMessageWhenPlayerIsWinner() {
+    void shouldReturnWinnerMessageWhenPlayerIsWinner() {
         // given
         Set<Integer> playerGivenNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         Set<Integer> randomNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
@@ -46,7 +46,7 @@ class LottoGameTest {
     }
 
     @Test
-    public void shouldReturnLoserMessageWhenPlayerIsLoser() {
+    void shouldReturnLoserMessageWhenPlayerIsLoser() {
         // given
         Set<Integer> playerGivenNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         Set<Integer> randomNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(7, 8, 9, 10, 11, 12)));
@@ -59,7 +59,7 @@ class LottoGameTest {
     }
 
     @Test
-    public void shouldReturnWinnerWithOneNumberMessageWhenPlayerHitOneNumber() {
+    void shouldReturnWinnerWithOneNumberMessageWhenPlayerHitOneNumber() {
         // given
         Set<Integer> playerGivenNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         Set<Integer> randomNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(6, 8, 9, 10, 11, 12)));

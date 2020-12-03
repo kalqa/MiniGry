@@ -5,14 +5,12 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import lombok.AllArgsConstructor;
 import minigames.game.lotto.messageprovider.LottoMessageProvider;
 
 import static minigames.game.lotto.config.LottoGameConfiguration.HOW_MANY_NUMBERS_FROM_USER;
 import static minigames.game.lotto.config.LottoGameConfiguration.LOWER_BOUND;
 import static minigames.game.lotto.config.LottoGameConfiguration.UPPER_BOUND;
 
-@AllArgsConstructor
 public class LottoInputReceiver {
 
     public Set<Integer> getSixNumbers(Scanner scanner) {

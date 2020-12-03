@@ -2,13 +2,11 @@ package minigames.game.lotto.model;
 
 import java.util.Set;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import minigames.game.lotto.messageprovider.LottoMessageProvider;
 import minigames.model.GameResultInfo;
 
-@AllArgsConstructor
-@Getter
+@Data
 public class LottoGameResultInfo implements GameResultInfo {
 
     private final Set<Integer> userGivenNumbers;

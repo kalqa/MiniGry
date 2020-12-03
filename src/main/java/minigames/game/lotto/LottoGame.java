@@ -3,7 +3,7 @@ package minigames.game.lotto;
 import java.util.Scanner;
 import java.util.Set;
 
-import lombok.AllArgsConstructor;
+import lombok.Data;
 import minigames.game.Game;
 import minigames.game.lotto.input.LottoInputReceiver;
 import minigames.game.lotto.logic.LottoHitNumberCalculator;
@@ -14,7 +14,7 @@ import minigames.model.GameResultInfo;
 
 import static minigames.game.lotto.messageprovider.LottoMessageProvider.GAME_NAME;
 
-@AllArgsConstructor
+@Data
 public class LottoGame implements Game {
 
     private final LottoInputReceiver lottoInputReceiver;

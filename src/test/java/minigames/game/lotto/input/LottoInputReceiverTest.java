@@ -20,10 +20,10 @@ class LottoInputReceiverTest {
     void shouldReturnNumbersInSetWhenAllInRange() {
         // given
         Set<Integer> expectedNumbers = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
-        String givenNumbers = "1 2 3 4 5 6";
-        Scanner scanner = mockScannerIn(givenNumbers);
+        String givenNumbers = "1 2 3 4 5 101 6";
+        Scanner userNumbers = mockScannerIn(givenNumbers);
         // when
-        final Set<Integer> userInputNumbers = lottoInputReceiver.getSixNumbers(scanner);
+        final Set<Integer> userInputNumbers = lottoInputReceiver.getSixNumbers(userNumbers);
         // then
         assertEquals(expectedNumbers, userInputNumbers);
     }

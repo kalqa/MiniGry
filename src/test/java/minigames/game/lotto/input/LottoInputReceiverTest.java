@@ -10,7 +10,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoInputReceiverTest {
 
@@ -25,7 +25,7 @@ class LottoInputReceiverTest {
         // when
         final Set<Integer> userInputNumbers = lottoInputReceiver.getSixNumbers(userNumbers);
         // then
-        assertEquals(expectedNumbers, userInputNumbers);
+        assertThat(expectedNumbers).isEqualTo(userInputNumbers);
     }
 
     @Test
@@ -37,7 +37,7 @@ class LottoInputReceiverTest {
         // when
         final Set<Integer> userInputNumbers = lottoInputReceiver.getSixNumbers(scanner);
         // then
-        assertEquals(expectedNumbers, userInputNumbers);
+        assertThat(expectedNumbers).isEqualTo(userInputNumbers);
     }
 
     @Test
@@ -49,7 +49,7 @@ class LottoInputReceiverTest {
         // when
         final Set<Integer> userInputNumbers = lottoInputReceiver.getSixNumbers(scanner);
         // then
-        assertEquals(expectedNumbers, userInputNumbers);
+        assertThat(expectedNumbers).isEqualTo(userInputNumbers);
     }
 
     private Scanner mockScannerIn(String data) {

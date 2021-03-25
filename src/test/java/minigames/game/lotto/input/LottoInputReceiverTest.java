@@ -11,6 +11,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 
 class LottoInputReceiverTest {
 
@@ -50,6 +51,19 @@ class LottoInputReceiverTest {
         final Set<Integer> userInputNumbers = lottoInputReceiver.getSixNumbers(scanner);
         // then
         assertThat(expectedNumbers).isEqualTo(userInputNumbers);
+    }
+
+    @Test
+    void shouldThrowNotANumberExceptionWhenStringWasGiven() {
+        // given
+        String givenInput = "asdasd";
+        String expectedExceptionMessage = "Not a number was given!";
+        Scanner scanner = mockScannerIn(givenInput);
+        // when
+        Throwable thrown = catchThrowable(() -> lottoInputReceiver.getSixNumbers(scanner));
+        // then
+        assertThat(thrown).isInstanceOf(NotANumberException.class)
+                .hasMessageContaining(expectedExceptionMessage);
     }
 
     private Scanner mockScannerIn(String data) {

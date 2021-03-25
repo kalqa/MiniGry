@@ -13,6 +13,8 @@ import static minigames.game.lotto.config.LottoGameConfiguration.UPPER_BOUND;
 
 public class LottoInputReceiver {
 
+    private static final String NEGATIVE_AND_POSITIVE_NUMBER_REGEX = "^-?\\d*\\.{0,1}\\d+$";
+
     public Set<Integer> getSixNumbers(Scanner scanner) {
         Set<Integer> givenNumbersFromUser = getNumbersFromUserInput(scanner);
         scanner.close();
@@ -28,6 +30,10 @@ public class LottoInputReceiver {
                 System.out.printf(LottoMessageProvider.NOT_IN_RANGE, LOWER_BOUND, UPPER_BOUND);
                 if (!in.hasNext()) {
                     return Collections.emptySet();
+                }
+                String next = in.next();
+                if (!next.contains(NEGATIVE_AND_POSITIVE_NUMBER_REGEX)) {
+                    throw new NotANumberException();
                 }
             }
             final int userInput = in.nextInt();
